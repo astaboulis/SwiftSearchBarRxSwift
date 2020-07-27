@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_SwiftSearchBarRxSwift_SwiftSearchBarRxSwiftUITests : NSObject
+@end
+@implementation PodsDummy_Pods_SwiftSearchBarRxSwift_SwiftSearchBarRxSwiftUITests
+@end
