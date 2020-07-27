@@ -18,12 +18,11 @@ class ViewController: UITableViewController,UISearchBarDelegate {
             .orEmpty
             .subscribe { [unowned self] (query) in
                 self.filtered = self.names.filter{ $0.hasPrefix(query.element!)}
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                self.tableView.reloadData()
+               
         }.dispose()
     }
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         filtered = names
