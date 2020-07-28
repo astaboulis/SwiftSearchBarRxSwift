@@ -11,21 +11,19 @@ import RxCocoa
 import RxSwift
 class ViewController: UITableViewController,UISearchBarDelegate {
     @IBOutlet var searchBar: UISearchBar!
-    let names = ["Angelos","Theodoros","George","Tasos","Theodora","Angeliki"]
+    let names = ["Angelos","Theodoros","George","Tasos","Theodoros","Angeliki"]
     var filtered = [String]()
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.rx.text
             .orEmpty
-            .subscribe { [unowned self] (query) in
-                self.filtered = self.names.filter{ $0.hasPrefix(query.element!)}
-                self.tableView.reloadData()
-               
-        }.dispose()
+            .subscribe { (event) in
+                self.filtered = self.names.filter{ $0.hasPrefix(event.element!)}
+            }.dispose()
+         self.tableView.reloadData()
     }
-  
     override func viewDidLoad() {
         super.viewDidLoad()
-        filtered = names
+        self.filtered = self.names
         searchBar.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,7 +31,7 @@ class ViewController: UITableViewController,UISearchBarDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+   
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
